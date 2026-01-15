@@ -18,7 +18,8 @@ pub struct Workflow {
 }
 
 impl Workflow {
-    /// Create a new workflow with a name.
+    /// Create a new workflow with a name (returns a builder).
+    #[allow(clippy::new_ret_no_self)]
     pub fn new(name: &str) -> WorkflowBuilder {
         WorkflowBuilder::new(name)
     }
@@ -63,6 +64,7 @@ impl WorkflowBuilder {
     }
 
     /// Add a step to the workflow.
+    #[allow(clippy::should_implement_trait)]
     pub fn add<S: Into<Step>>(mut self, step: S) -> Self {
         self.workflow.steps.push(step.into());
         self

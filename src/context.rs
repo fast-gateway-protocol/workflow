@@ -61,10 +61,8 @@ impl Context {
         match value {
             Value::Object(map) => {
                 // Check if this is a template
-                if let Some(template) = map.get("__template__") {
-                    if let Value::String(template_str) = template {
-                        return self.render_template(template_str);
-                    }
+                if let Some(Value::String(template_str)) = map.get("__template__") {
+                    return self.render_template(template_str);
                 }
 
                 // Recursively resolve object values
