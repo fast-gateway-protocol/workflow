@@ -98,13 +98,17 @@ mod tests {
     fn test_workflow_builder() {
         let workflow = Workflow::new("test")
             .description("Test workflow")
-            .add(Step::call("gmail", "gmail.inbox")
-                .with_param("limit", 5)
-                .output("emails")
-                .build())
-            .add(Step::call("browser", "browser.open")
-                .with_template_param("url", "{{ emails.0.url }}")
-                .build())
+            .add(
+                Step::call("gmail", "gmail.inbox")
+                    .with_param("limit", 5)
+                    .output("emails")
+                    .build(),
+            )
+            .add(
+                Step::call("browser", "browser.open")
+                    .with_template_param("url", "{{ emails.0.url }}")
+                    .build(),
+            )
             .build();
 
         assert_eq!(workflow.name, "test");

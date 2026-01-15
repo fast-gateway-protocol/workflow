@@ -82,16 +82,11 @@ pub fn execute(workflow: &Workflow) -> Result<ExecutionResult> {
         let resolved_params = resolve_params(&ctx, &step.params)?;
 
         // Call the daemon
-        let response = fgp_daemon::client::call(
-            &step.service,
-            &step.method,
-            resolved_params.clone(),
-        ).with_context(|| format!(
-            "Step {} ({}.{}) failed",
-            index,
-            step.service,
-            step.method
-        ))?;
+        let response =
+            fgp_daemon::client::call(&step.service, &step.method, resolved_params.clone())
+                .with_context(|| {
+                    format!("Step {} ({}.{}) failed", index, step.service, step.method)
+                })?;
 
         // Check response
         if !response.ok {
@@ -108,11 +103,7 @@ pub fn execute(workflow: &Workflow) -> Result<ExecutionResult> {
         let result = response.result.unwrap_or(Value::Null);
         let step_ms = step_start.elapsed().as_secs_f64() * 1000.0;
 
-        tracing::debug!(
-            step = index,
-            duration_ms = step_ms,
-            "Step completed"
-        );
+        tracing::debug!(step = index, duration_ms = step_ms, "Step completed");
 
         // Store result
         ctx.push_result(result.clone());

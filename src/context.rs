@@ -75,9 +75,7 @@ impl Context {
                 Ok(Value::Object(result))
             }
             Value::Array(arr) => {
-                let resolved: Result<Vec<Value>> = arr.iter()
-                    .map(|v| self.resolve(v))
-                    .collect();
+                let resolved: Result<Vec<Value>> = arr.iter().map(|v| self.resolve(v)).collect();
                 Ok(Value::Array(resolved?))
             }
             Value::String(s) => {
@@ -110,7 +108,8 @@ impl Context {
         data.insert("$results".to_string(), Value::Array(self.results.clone()));
         data.insert("results".to_string(), Value::Array(self.results.clone()));
 
-        let rendered = hb.render_template(template, &data)
+        let rendered = hb
+            .render_template(template, &data)
             .context("Failed to render template")?;
 
         // Try to parse as JSON, otherwise return as string
@@ -183,6 +182,9 @@ mod tests {
         let value = Value::String("Visit {{ url }}".to_string());
         let resolved = ctx.resolve(&value).unwrap();
 
-        assert_eq!(resolved, Value::String("Visit https://example.com".to_string()));
+        assert_eq!(
+            resolved,
+            Value::String("Visit https://example.com".to_string())
+        );
     }
 }

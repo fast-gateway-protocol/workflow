@@ -26,8 +26,7 @@ use std::path::Path;
 /// assert_eq!(workflow.steps.len(), 1);
 /// ```
 pub fn parse_yaml(yaml: &str) -> Result<Workflow> {
-    let workflow: Workflow = serde_yaml::from_str(yaml)
-        .context("Failed to parse workflow YAML")?;
+    let workflow: Workflow = serde_yaml::from_str(yaml).context("Failed to parse workflow YAML")?;
 
     validate(&workflow)?;
 
@@ -135,7 +134,10 @@ steps:
 
         let result = parse_yaml(yaml);
         assert!(result.is_err());
-        assert!(result.unwrap_err().to_string().contains("name cannot be empty"));
+        assert!(result
+            .unwrap_err()
+            .to_string()
+            .contains("name cannot be empty"));
     }
 
     #[test]
@@ -147,6 +149,9 @@ steps: []
 
         let result = parse_yaml(yaml);
         assert!(result.is_err());
-        assert!(result.unwrap_err().to_string().contains("at least one step"));
+        assert!(result
+            .unwrap_err()
+            .to_string()
+            .contains("at least one step"));
     }
 }
