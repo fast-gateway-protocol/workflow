@@ -1,0 +1,30 @@
+[package]
+name = "fgp-workflow"
+version = "0.1.0"
+edition = "2021"
+description = "Workflow composition for FGP daemon services"
+license = "MIT"
+repository = "https://github.com/fast-gateway-protocol/workflow"
+
+[dependencies]
+# FGP daemon client
+fgp-daemon = { path = "../daemon" }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+
+# Error handling
+anyhow = "1"
+thiserror = "2"
+
+# Template rendering
+handlebars = "6"
+
+# Logging
+tracing = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
