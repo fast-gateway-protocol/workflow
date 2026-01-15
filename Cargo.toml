@@ -8,7 +8,7 @@ repository = "https://github.com/fast-gateway-protocol/workflow"
 
 [dependencies]
 # FGP daemon client
-fgp-daemon = { git = "https://github.com/fast-gateway-protocol/daemon.git", branch = "feat/t2-auto-start" }
+fgp-daemon = { git = "https://github.com/fast-gateway-protocol/daemon.git" }
 
 # Serialization
 serde = { version = "1", features = ["derive"] }
