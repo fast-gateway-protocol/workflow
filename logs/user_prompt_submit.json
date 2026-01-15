@@ -22,5 +22,21 @@
     "permission_mode": "bypassPermissions",
     "hook_event_name": "UserPromptSubmit",
     "prompt": "check if the CI workflows are passing"
+  },
+  {
+    "session_id": "0c6dbfa3-3098-4071-8a4e-c5dd9f1118ae",
+    "transcript_path": "/Users/wolfgangschoenberger/.claude/projects/-Users-wolfgangschoenberger-Projects-fgp/0c6dbfa3-3098-4071-8a4e-c5dd9f1118ae.jsonl",
+    "cwd": "/Users/wolfgangschoenberger/Projects/fgp/workflow",
+    "permission_mode": "bypassPermissions",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "check the PR review comments now"
+  },
+  {
+    "session_id": "0c6dbfa3-3098-4071-8a4e-c5dd9f1118ae",
+    "transcript_path": "/Users/wolfgangschoenberger/.claude/projects/-Users-wolfgangschoenberger-Projects-fgp/0c6dbfa3-3098-4071-8a4e-c5dd9f1118ae.jsonl",
+    "cwd": "/Users/wolfgangschoenberger/Projects/fgp/workflow",
+    "permission_mode": "bypassPermissions",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "fix the high priority issues"
   }
 ]

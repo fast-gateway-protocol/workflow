@@ -81,9 +81,9 @@ pub fn execute(workflow: &Workflow) -> Result<ExecutionResult> {
         // Resolve parameters (expand templates)
         let resolved_params = resolve_params(&ctx, &step.params)?;
 
-        // Call the daemon
+        // Call the daemon (with auto-start enabled for workflows)
         let response =
-            fgp_daemon::client::call(&step.service, &step.method, resolved_params.clone())
+            fgp_daemon::client::call_auto_start(&step.service, &step.method, resolved_params.clone())
                 .with_context(|| {
                     format!("Step {} ({}.{}) failed", index, step.service, step.method)
                 })?;
